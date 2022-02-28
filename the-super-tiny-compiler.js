@@ -141,17 +141,18 @@
  * When transforming the AST we can manipulate nodes by
  * adding/removing/replacing properties, we can add new nodes, remove nodes, or
  * we could leave the existing AST alone and create an entirely new one based
- * on it.
+ * on it. 转换AST时，可以添加、删除、替换属性来操作节点。可以不使用现有的AST，并给予它创建
+ * 一个全新的节点
  *
  * Since we’re targeting a new language, we’re going to focus on creating an
  * entirely new AST that is specific to the target language.
- *
+ * 目标是一种新的语言，所以我们专注于创建一种特定于目标语言的全新AST
  * Traversal
  * ---------
  *
  * In order to navigate through all of these nodes, we need to be able to
  * traverse through them. This traversal process goes to each node in the AST
- * depth-first.
+ * depth-first.   dfs遍历AST
  *
  *   {
  *     type: 'Program',
@@ -175,14 +176,20 @@
  *     }]
  *   }
  *
- * So for the above AST we would go:
+ * So for the above AST we would go:    
+ *   2 + (4 - 2)    (add 2 (subtract 4 2))    add(2, subtract(4, 2))
  *
  *   1. Program - Starting at the top level of the AST
- *   2. CallExpression (add) - Moving to the first element of the Program's body
+ *   2. CallExpression (add) - Moving to the first element of the Program's body  
+ *      add 移动到程序主体的第一个元素
  *   3. NumberLiteral (2) - Moving to the first element of CallExpression's params
+ *      2 移动到 CallExpression 的第一个元素
  *   4. CallExpression (subtract) - Moving to the second element of CallExpression's params
+ *      subtract 移动到 CallExpression 的第二个元素
  *   5. NumberLiteral (4) - Moving to the first element of CallExpression's params
+ *      4 移动到 CallExpression 的第一个元素
  *   6. NumberLiteral (2) - Moving to the second element of CallExpression's params
+ *      2 移动到 CallExpression 的第二个元素
  *
  * If we were manipulating this AST directly, instead of creating a separate AST,
  * we would likely introduce all sorts of abstractions here. But just visiting
@@ -195,7 +202,7 @@
  * --------
  *
  * The basic idea here is that we are going to create a “visitor” object that
- * has methods that will accept different node types.
+ * has methods that will accept different node types. 创建一个访问者对象，其方法接收不同的节点类型
  *
  *   var visitor = {
  *     NumberLiteral() {},
@@ -308,6 +315,7 @@
 function tokenizer(input) {
 
   // A `current` variable for tracking our position in the code like a cursor.
+  // 游标一样 跟踪我们在代码中的位置
   let current = 0;
 
   // And a `tokens` array for pushing our tokens to.
@@ -363,7 +371,7 @@ function tokenizer(input) {
     //
     // So here we're just going to test for existence and if it does exist we're
     // going to just `continue` on.
-    let WHITESPACE = /\s/;
+    let WHITESPACE = /\s/; // 空白，包括空格、换行、tab缩进等所有的空白
     if (WHITESPACE.test(char)) {
       current++;
       continue;
@@ -378,6 +386,7 @@ function tokenizer(input) {
     //        Only two separate tokens
     //
     // So we start this off when we encounter the first number in a sequence.
+    // 数字类型
     let NUMBERS = /[0-9]/;
     if (NUMBERS.test(char)) {
 
@@ -407,6 +416,7 @@ function tokenizer(input) {
     //            ^^^   ^^^ string tokens
     //
     // We'll start by checking for the opening quote:
+    // 字符串类型
     if (char === '"') {
       // Keep a `value` variable for building up our string token.
       let value = '';
@@ -437,7 +447,7 @@ function tokenizer(input) {
     //   (add 2 4)
     //    ^^^
     //    Name token
-    //
+    //  函数名称
     let LETTERS = /[a-z]/i;
     if (LETTERS.test(char)) {
       let value = '';
@@ -535,7 +545,7 @@ function parser(tokens) {
       // the open parenthesis is the name of the function.
       let node = {
         type: 'CallExpression',
-        name: token.value,
+        name: token.value,  // 函数名称 开括号之后的标记
         params: [],
       };
 
@@ -954,10 +964,13 @@ function codeGenerator(node) {
 
 function compiler(input) {
   let tokens = tokenizer(input);
+  console.log('tokens: ', tokens);
   let ast    = parser(tokens);
+  console.log('ast: ', JSON.stringify(ast));
   let newAst = transformer(ast);
+  console.log('newAst: ', JSON.stringify(newAst));
   let output = codeGenerator(newAst);
-
+  console.log('output :>> ', output);
   // and simply return the output!
   return output;
 }
