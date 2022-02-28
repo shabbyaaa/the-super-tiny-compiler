@@ -1,80 +1,4 @@
 'use strict';
-
-/**
- * TTTTTTTTTTTTTTTTTTTTTTTHHHHHHHHH     HHHHHHHHHEEEEEEEEEEEEEEEEEEEEEE
- * T:::::::::::::::::::::TH:::::::H     H:::::::HE::::::::::::::::::::E
- * T:::::::::::::::::::::TH:::::::H     H:::::::HE::::::::::::::::::::E
- * T:::::TT:::::::TT:::::THH::::::H     H::::::HHEE::::::EEEEEEEEE::::E
- * TTTTTT  T:::::T  TTTTTT  H:::::H     H:::::H    E:::::E       EEEEEE
- *         T:::::T          H:::::H     H:::::H    E:::::E
- *         T:::::T          H::::::HHHHH::::::H    E::::::EEEEEEEEEE
- *         T:::::T          H:::::::::::::::::H    E:::::::::::::::E
- *         T:::::T          H:::::::::::::::::H    E:::::::::::::::E
- *         T:::::T          H::::::HHHHH::::::H    E::::::EEEEEEEEEE
- *         T:::::T          H:::::H     H:::::H    E:::::E
- *         T:::::T          H:::::H     H:::::H    E:::::E       EEEEEE
- *       TT:::::::TT      HH::::::H     H::::::HHEE::::::EEEEEEEE:::::E
- *       T:::::::::T      H:::::::H     H:::::::HE::::::::::::::::::::E
- *       T:::::::::T      H:::::::H     H:::::::HE::::::::::::::::::::E
- *       TTTTTTTTTTT      HHHHHHHHH     HHHHHHHHHEEEEEEEEEEEEEEEEEEEEEE
- *
- *    SSSSSSSSSSSSSSS UUUUUUUU     UUUUUUUUPPPPPPPPPPPPPPPPP   EEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRR
- *  SS:::::::::::::::SU::::::U     U::::::UP::::::::::::::::P  E::::::::::::::::::::ER::::::::::::::::R
- * S:::::SSSSSS::::::SU::::::U     U::::::UP::::::PPPPPP:::::P E::::::::::::::::::::ER::::::RRRRRR:::::R
- * S:::::S     SSSSSSSUU:::::U     U:::::UUPP:::::P     P:::::PEE::::::EEEEEEEEE::::ERR:::::R     R:::::R
- * S:::::S             U:::::U     U:::::U   P::::P     P:::::P  E:::::E       EEEEEE  R::::R     R:::::R
- * S:::::S             U:::::U     U:::::U   P::::P     P:::::P  E:::::E               R::::R     R:::::R
- *  S::::SSSS          U:::::U     U:::::U   P::::PPPPPP:::::P   E::::::EEEEEEEEEE     R::::RRRRRR:::::R
- *   SS::::::SSSSS     U:::::U     U:::::U   P:::::::::::::PP    E:::::::::::::::E     R:::::::::::::RR
- *     SSS::::::::SS   U:::::U     U:::::U   P::::PPPPPPPPP      E:::::::::::::::E     R::::RRRRRR:::::R
- *        SSSSSS::::S  U:::::U     U:::::U   P::::P              E::::::EEEEEEEEEE     R::::R     R:::::R
- *             S:::::S U:::::U     U:::::U   P::::P              E:::::E               R::::R     R:::::R
- *             S:::::S U::::::U   U::::::U   P::::P              E:::::E       EEEEEE  R::::R     R:::::R
- * SSSSSSS     S:::::S U:::::::UUU:::::::U PP::::::PP          EE::::::EEEEEEEE:::::ERR:::::R     R:::::R
- * S::::::SSSSSS:::::S  UU:::::::::::::UU  P::::::::P          E::::::::::::::::::::ER::::::R     R:::::R
- * S:::::::::::::::SS     UU:::::::::UU    P::::::::P          E::::::::::::::::::::ER::::::R     R:::::R
- *  SSSSSSSSSSSSSSS         UUUUUUUUU      PPPPPPPPPP          EEEEEEEEEEEEEEEEEEEEEERRRRRRRR     RRRRRRR
- *
- * TTTTTTTTTTTTTTTTTTTTTTTIIIIIIIIIINNNNNNNN        NNNNNNNNYYYYYYY       YYYYYYY
- * T:::::::::::::::::::::TI::::::::IN:::::::N       N::::::NY:::::Y       Y:::::Y
- * T:::::::::::::::::::::TI::::::::IN::::::::N      N::::::NY:::::Y       Y:::::Y
- * T:::::TT:::::::TT:::::TII::::::IIN:::::::::N     N::::::NY::::::Y     Y::::::Y
- * TTTTTT  T:::::T  TTTTTT  I::::I  N::::::::::N    N::::::NYYY:::::Y   Y:::::YYY
- *         T:::::T          I::::I  N:::::::::::N   N::::::N   Y:::::Y Y:::::Y
- *         T:::::T          I::::I  N:::::::N::::N  N::::::N    Y:::::Y:::::Y
- *         T:::::T          I::::I  N::::::N N::::N N::::::N     Y:::::::::Y
- *         T:::::T          I::::I  N::::::N  N::::N:::::::N      Y:::::::Y
- *         T:::::T          I::::I  N::::::N   N:::::::::::N       Y:::::Y
- *         T:::::T          I::::I  N::::::N    N::::::::::N       Y:::::Y
- *         T:::::T          I::::I  N::::::N     N:::::::::N       Y:::::Y
- *       TT:::::::TT      II::::::IIN::::::N      N::::::::N       Y:::::Y
- *       T:::::::::T      I::::::::IN::::::N       N:::::::N    YYYY:::::YYYY
- *       T:::::::::T      I::::::::IN::::::N        N::::::N    Y:::::::::::Y
- *       TTTTTTTTTTT      IIIIIIIIIINNNNNNNN         NNNNNNN    YYYYYYYYYYYYY
- *
- *         CCCCCCCCCCCCC     OOOOOOOOO     MMMMMMMM               MMMMMMMMPPPPPPPPPPPPPPPPP   IIIIIIIIIILLLLLLLLLLL             EEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRR
- *      CCC::::::::::::C   OO:::::::::OO   M:::::::M             M:::::::MP::::::::::::::::P  I::::::::IL:::::::::L             E::::::::::::::::::::ER::::::::::::::::R
- *    CC:::::::::::::::C OO:::::::::::::OO M::::::::M           M::::::::MP::::::PPPPPP:::::P I::::::::IL:::::::::L             E::::::::::::::::::::ER::::::RRRRRR:::::R
- *   C:::::CCCCCCCC::::CO:::::::OOO:::::::OM:::::::::M         M:::::::::MPP:::::P     P:::::PII::::::IILL:::::::LL             EE::::::EEEEEEEEE::::ERR:::::R     R:::::R
- *  C:::::C       CCCCCCO::::::O   O::::::OM::::::::::M       M::::::::::M  P::::P     P:::::P  I::::I    L:::::L                 E:::::E       EEEEEE  R::::R     R:::::R
- * C:::::C              O:::::O     O:::::OM:::::::::::M     M:::::::::::M  P::::P     P:::::P  I::::I    L:::::L                 E:::::E               R::::R     R:::::R
- * C:::::C              O:::::O     O:::::OM:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P   I::::I    L:::::L                 E::::::EEEEEEEEEE     R::::RRRRRR:::::R
- * C:::::C              O:::::O     O:::::OM::::::M M::::M M::::M M::::::M  P:::::::::::::PP    I::::I    L:::::L                 E:::::::::::::::E     R:::::::::::::RR
- * C:::::C              O:::::O     O:::::OM::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP      I::::I    L:::::L                 E:::::::::::::::E     R::::RRRRRR:::::R
- * C:::::C              O:::::O     O:::::OM::::::M   M:::::::M   M::::::M  P::::P              I::::I    L:::::L                 E::::::EEEEEEEEEE     R::::R     R:::::R
- * C:::::C              O:::::O     O:::::OM::::::M    M:::::M    M::::::M  P::::P              I::::I    L:::::L                 E:::::E               R::::R     R:::::R
- *  C:::::C       CCCCCCO::::::O   O::::::OM::::::M     MMMMM     M::::::M  P::::P              I::::I    L:::::L         LLLLLL  E:::::E       EEEEEE  R::::R     R:::::R
- *   C:::::CCCCCCCC::::CO:::::::OOO:::::::OM::::::M               M::::::MPP::::::PP          II::::::IILL:::::::LLLLLLLLL:::::LEE::::::EEEEEEEE:::::ERR:::::R     R:::::R
- *    CC:::::::::::::::C OO:::::::::::::OO M::::::M               M::::::MP::::::::P          I::::::::IL::::::::::::::::::::::LE::::::::::::::::::::ER::::::R     R:::::R
- *      CCC::::::::::::C   OO:::::::::OO   M::::::M               M::::::MP::::::::P          I::::::::IL::::::::::::::::::::::LE::::::::::::::::::::ER::::::R     R:::::R
- *         CCCCCCCCCCCCC     OOOOOOOOO     MMMMMMMM               MMMMMMMMPPPPPPPPPP          IIIIIIIIIILLLLLLLLLLLLLLLLLLLLLLLLEEEEEEEEEEEEEEEEEEEEEERRRRRRRR     RRRRRRR
- *
- * =======================================================================================================================================================================
- * =======================================================================================================================================================================
- * =======================================================================================================================================================================
- * =======================================================================================================================================================================
- */
-
 /**
  * Today we're going to write a compiler together. But not just any compiler... A
  * super duper teeny tiny compiler! A compiler that is so small that if you
@@ -100,18 +24,19 @@
  * demonstrate many of the major pieces of a modern compiler.
  */
 
-/**
+/**   解析、转行、代码生成
  * Most compilers break down into three primary stages: Parsing, Transformation,
- * and Code Generation
+ * and Code Generation  
  *
  * 1. *Parsing* is taking raw code and turning it into a more abstract
- *    representation of the code.
+ *    representation of the code. 获取原始代码、并将代码生成一个更加抽象的形式 AST abstract syntax tree
  *
  * 2. *Transformation* takes this abstract representation and manipulates to do
- *    whatever the compiler wants it to.
+ *    whatever the compiler wants it to.  操作解析得到的抽象形式，得到新的AST结构（eg: ES6转ES5，先通过esprima
+ *    解析器得到标准的ES6 AST，再手动转换成标准ES5的AST
  *
  * 3. *Code Generation* takes the transformed representation of the code and
- *    turns it into new code.
+ *    turns it into new code.  基于转换后的AST生成代码
  */
 
 /**
@@ -119,7 +44,7 @@
  * -------
  *
  * Parsing typically gets broken down into two phases: Lexical Analysis and
- * Syntactic Analysis.
+ * Syntactic Analysis. 解析的两个阶段 词法分析、语法分析
  *
  * 1. *Lexical Analysis* takes the raw code and splits it apart into these things
  *    called tokens by a thing called a tokenizer (or lexer).
@@ -143,6 +68,8 @@
  *
  * Tokens might look something like this:
  *
+ * 词法分析： 代码以文本形式被读取，中间需要通过词法分析器对代码进行处理，生成一个一个的词素 
+ * eg:
  *   [
  *     { type: 'paren',  value: '('        },
  *     { type: 'name',   value: 'add'      },
@@ -156,7 +83,7 @@
  *   ]
  *
  * And an Abstract Syntax Tree (AST) might look like this:
- *
+ * 语法分析根据上个阶段生成的词素集合，将其按照语言对应的标志生成对应的AST语法树
  *   {
  *     type: 'Program',
  *     body: [{
